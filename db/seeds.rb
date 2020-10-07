@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'csv'
+
+tracks_text = File.read('csv_files/tracks.csv')
+tracks = CSV.parse(tracks_text, :headers => true)
+tracks.each do |row|
+  Track.create!(row.to_hash)
+end
